@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Pantelispanka
  */
 
-@XmlRootElement
+@XmlRootElement(name = "StandardBusinessDocument")
 public class StandardBusinessDocumentWrapper {
     
     

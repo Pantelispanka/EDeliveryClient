@@ -61,6 +61,11 @@ public class StandardBusinessDocumentHeaderMarshallerGeneratorTest {
 
     }
     
+    public StandardBusinessDocumentHeader returnDocHead(){
+        return businDocHeader;
+    }
+    
+    
     @BeforeClass
     public static void setUpClass() throws DatatypeConfigurationException {
 
