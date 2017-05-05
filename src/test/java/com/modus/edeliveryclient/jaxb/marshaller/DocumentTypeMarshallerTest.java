@@ -57,14 +57,19 @@ public class DocumentTypeMarshallerTest {
     private static DocumentType docType;
     private static AttachmentType attachment;
 
+    private static AttachmentType att;
     private static AttachmentTypeHelper attachHelp;
     
+    private static TextType forTestText;
     
     private static BinaryObjectType embeddedBinObj;
     private static NameType nameTypeValue;
     private static PictureType pictureTypeValue;
     private static CodeType statusCode;
     private static TextType uriText;
+    private static PersonType personTypeTest;
+    
+    
     
 //    private static final PeriodType period = new PeriodType();
 //    private static final OrganizationType organization = new OrganizationType();
@@ -101,42 +106,11 @@ public class DocumentTypeMarshallerTest {
 
     @BeforeClass
     public static void setUpClass() throws DatatypeConfigurationException, IOException {
+        
+        
         DocumentTypeMarshallerTest march = new DocumentTypeMarshallerTest();
-//        purpose.setLanguageCode("gre");
-//        purpose.setValue("eng");
-//        
-//        name.setLanguageCode("gre");
-//        name.setValue("gre");
-//        
-//        season.setLanguageCode("eng");
-//        season.setListAgencyID("agency id");
-//        season.setListAgencyName("agency name");
-//        season.setListID("id");
-//        season.setListName("lisn name");
-//        season.setListSchemeURI("list scheme uri");
-//        season.setListURI("list uri");
-//        season.setListVersionID("version id");
-//        season.setName("name");
-//        season.setValue("value");
-//        period.setEndDateTime(issueDateTime);
-//        period.setInclusiveIndicator(Boolean.FALSE);
-//        period.setName(name);
-//        period.setSeasonCode(season);
-//        period.setSequenceNumeric(BigDecimal.ONE);
-//        period.setSpecificDateTime(issueDateTime);
-//        period.setStartDateTime(issueDateTime);
-//        period.setStatusIndicator(Boolean.FALSE);
-//        person.set
-//        
-//        referenceStatus.setResponsiblePerson(person);
-//        docType = new DocumentGenerator().generateDocTypeFromClasses(period,
-//                organization, party, person, chargeType, text, stracture,
-//                Boolean.FALSE, BigDecimal.ONE, effectivePeriod, BigDecimal.TEN,
-//                issueDateTime, issuerOrganization, issuerParty, Boolean.TRUE,
-//                purpose, receiptDateTime, referenceDateTime, examinationResult,
-//                payment, paymentTerms, referenceStatus, relatedEvent, conditionType, submissionDateTime);
-        EgifCoreComponentsFactory fac = new EgifCoreComponentsFactory();
-        JAXBElement test = fac.createAttachment(attachment);
+
+        
         embeddedBinObj = new BinaryObjectType();
         embeddedBinObj.setCharacterSetCode("characterCodeSet");
         embeddedBinObj.setEncodingCode("encoding Code");
@@ -145,10 +119,58 @@ public class DocumentTypeMarshallerTest {
         embeddedBinObj.setMimeCode("mimeCode");
         embeddedBinObj.setUri("uri");
         embeddedBinObj.setValue(data);
+        
         nameTypeValue = new NameType();
         nameTypeValue.setLanguageCode("languageCode");
         nameTypeValue.setValue("language value");
+        
+        forTestText = new TextType();
+        forTestText.setLanguageCode("gr");
+        forTestText.setValue("Κείμενο τεστ");
+        
         pictureTypeValue = new PictureType();
+        pictureTypeValue.setAreaIncluded(forTestText);
+        pictureTypeValue.setCopyrightOwnerName(forTestText);
+        pictureTypeValue.setDescription(forTestText);
+        pictureTypeValue.setDigitalImageBinaryObject(embeddedBinObj);
+        pictureTypeValue.setSubject(forTestText);
+        pictureTypeValue.setTitle(nameTypeValue);
+        pictureTypeValue.setType(forTestText);
+        
+        statusCode = new CodeType();
+        statusCode.setLanguageCode("gr");
+        statusCode.setListAgencyID("id");
+        statusCode.setListAgencyName("AgencyName");
+        statusCode.setListID("Id");
+        statusCode.setListName("Name");
+        statusCode.setListSchemeURI("schemeURI");
+        statusCode.setListURI("list URI");
+        statusCode.setListVersionID("list version ID");
+        statusCode.setValue("The Actual Value!!!!");
+        
+      
+        personTypeTest = new PersonType();
+        personTypeTest.setGenderCode(statusCode);
+                
+        
+        docType = new DocumentType();
+        docType.setContent(uriText);
+        
+        
+        
+        EgifCoreComponentsFactory fac = new EgifCoreComponentsFactory();
+        att =fac.createAttachmentType();
+        
+        att.getEmbeddedBinaryObject().add(embeddedBinObj);
+        
+        
+        
+        pictureTypeValue = new PictureType();
+        att.getEmbeddedBinaryObject().add(embeddedBinObj);
+        att.getName().add(nameTypeValue);
+        att.getEmbeddedPicture().add(pictureTypeValue);
+        att.getStatusCode().add(statusCode);
+        att.getURI().add(uriText);
         attachment = new AttachmentGenerator().attachmentTypeGenerator(embeddedBinObj, nameTypeValue, pictureTypeValue, docType, statusCode, uriText);
     }
 
@@ -175,7 +197,7 @@ public class DocumentTypeMarshallerTest {
         try{
             JAXBContext jaxbContext = JAXBContext.newInstance(AttachmentTypeHelper.class);
             attachHelp = new AttachmentTypeHelper();
-            attachHelp.setAttachment(attachment);
+            attachHelp.setAttachment(att);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

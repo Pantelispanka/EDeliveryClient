@@ -3,5 +3,8 @@
     <Attachment>
         <ns35:Name languageCode="languageCode">language value</ns35:Name>
         <ns35:EmbeddedBinaryObject format="txt" mimeCode="mimeCode" encodingCode="encoding Code" characterSetCode="characterCodeSet" uri="uri" fileName="test.txt">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</ns35:EmbeddedBinaryObject>
+        <ns35:EmbeddedBinaryObject format="txt" mimeCode="mimeCode" encodingCode="encoding Code" characterSetCode="characterCodeSet" uri="uri" fileName="test.txt">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</ns35:EmbeddedBinaryObject>
+        <ns35:StatusCode listID="Id" listAgencyID="id" listAgencyName="AgencyName" listName="Name" listVersionID="list version ID" languageCode="gr" listURI="list URI" listSchemeURI="schemeURI">The Actual Value!!!!</ns35:StatusCode>
+        <ns35:EmbeddedPicture/>
     </Attachment>
 </attachmentTypeHelper>
