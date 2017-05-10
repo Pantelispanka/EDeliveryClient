@@ -5,7 +5,7 @@
  */
 package com.modus.edeliveryclient.jaxb.marshaller;
 
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocumentHeader;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;

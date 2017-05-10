@@ -5,7 +5,6 @@
  */
 package com.modus.edeliveryclient.jaxb.marshaller;
 
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.jaxb.egif_core_component.AttachmentType;
 import com.modus.edeliveryclient.jaxb.egif_core_component.BinaryObjectType;
 import com.modus.edeliveryclient.jaxb.egif_core_component.CodeType;
@@ -16,6 +15,8 @@ import com.modus.edeliveryclient.jaxb.egif_core_component.PictureType;
 import com.modus.edeliveryclient.jaxb.egif_core_component.TextType;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.SBDHFactory;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocumentHeader;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
@@ -35,7 +36,7 @@ import static org.junit.Assert.*;
  * @author Pantelispanka
  */
 
-public class StandardBusinessDocumentMarshaller {
+public class StandardBusinessDocumentMarshallerTest {
     
     
     
@@ -47,12 +48,14 @@ public class StandardBusinessDocumentMarshaller {
     
     
     
-    public StandardBusinessDocumentMarshaller() {
+    public StandardBusinessDocumentMarshallerTest() {
     }
     
     @BeforeClass
     public static void setUpClass() throws DatatypeConfigurationException, IOException {
-        sbdh = new StandardBusinessDocumentHeaderMarshallerGeneratorTest().returnDocHead(); 
+        new StandardBusinessDocumentHeaderMarshallerGeneratorTest().setUp(); 
+        sbdh = new StandardBusinessDocumentHeaderMarshallerGeneratorTest().returnDocHead();
+        new DocumentTypeMarshallerTest().setUp();
         att = new DocumentTypeMarshallerTest().returnAttach();
     }
     
@@ -79,12 +82,12 @@ public class StandardBusinessDocumentMarshaller {
         File file = new File("/Users/modussa/Java/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
         
         try{
-            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocumentWrapper.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocumentWrapper.class, SBDHFactory.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             sbd = new StandardBusinessDocumentWrapper();
 //            sbd.setStandardBusinessDocumentHeader(att);
             sbd.setStandardBusinessDocumentHeader(sbdh);
-            
+            sbd.setAny(att);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.marshal(sbd, file);
             jaxbMarshaller.marshal(sbd, System.out);

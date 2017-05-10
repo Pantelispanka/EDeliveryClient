@@ -5,15 +5,17 @@
  */
 package com.modus.edeliveryclient.jaxb.marshaller;
 
-import com.modus.edeliveryclient.jaxb.documentheader.DocumentHeaderFactory;
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader;
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader.BusinessScope;
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader.BusinessScope.Scope;
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader.DocumentIdentification;
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader.Receiver;
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader.Receiver.Identifier;
-import com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader.Sender;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.BusinessScope;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.DocumentIdentification;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.Manifest;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.ManifestItem;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.Partner;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.PartnerIdentification;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.Scope;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocumentHeader;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import static java.time.temporal.TemporalQueries.localDate;
@@ -32,45 +34,46 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class StandardBusinessDocumentHeaderGenerator {
 
     StandardBusinessDocumentWrapper businessDocument = new StandardBusinessDocumentWrapper();
-    DocumentHeaderFactory headerFactory = new DocumentHeaderFactory();
-    
+    SBDHFactory headerFactory = new SBDHFactory();
 
     public StandardBusinessDocumentHeader generateDocumentHeaderfromValues(float headerVersion,
             String participantIdentifierSenderScheme, String participantIdentifierSenderValue,
             String participantIdentifierReceiverScheme, String participantIdentifierReceiverValue,
             String documentIdStandard, int docTypeVersion,
-            String documentInstanceIdentifier, String documentType
-            , List<StandardBusinessDocumentHeader.BusinessScope.Scope> scopes) throws DatatypeConfigurationException {
+            String documentInstanceIdentifier, String documentType,
+             List<BusinessScope> scopes, String manifestDescr, String manifestLanguage, String maniTypeQualCode,
+             String UniformResourceIdentifier) throws DatatypeConfigurationException {
 
         StandardBusinessDocumentHeader header = headerFactory.createStandardBusinessDocumentHeader();
-        
+
         /**
          * Sets the header Version
          *
          */
-        header.setHeaderVersion(headerVersion);
+        String hVersion = Float.toString(headerVersion);
+        header.setHeaderVersion(hVersion);
 
         /**
          * Creates and places sender
          *
          */
-        Sender sender = new Sender();
-        com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader.Sender.Identifier senderId = new com.modus.edeliveryclient.jaxb.documentheader.StandardBusinessDocumentHeader.Sender.Identifier();
+        Partner sender = new Partner();
+        PartnerIdentification senderId = new PartnerIdentification();
         senderId.setValue(participantIdentifierSenderValue);
         senderId.setAuthority(participantIdentifierSenderScheme);
         sender.setIdentifier(senderId);
-        header.setSender(sender);
+        header.getSender().add(sender);
 
         /**
          * Creates and places receiver
          *
          */
-        Receiver receiver = new Receiver();
-        Identifier receiverId = new Identifier();
+        Partner receiver = new Partner();
+        PartnerIdentification receiverId = new PartnerIdentification();
         receiverId.setAuthority(participantIdentifierReceiverScheme);
         receiverId.setValue(participantIdentifierReceiverValue);
         receiver.setIdentifier(receiverId);
-        header.setReceiver(receiver);
+        header.getReceiver().add(receiver);
 
         /**
          * Creates and places Document Identification
@@ -79,7 +82,8 @@ public class StandardBusinessDocumentHeaderGenerator {
         DocumentIdentification docInf = new DocumentIdentification();
         docInf.setStandard(documentIdStandard);
 //        String typeVersion = Integer.toString(docTypeVersion);
-        docInf.setTypeVersion(docTypeVersion);
+        String typeVersion = Integer.toString(docTypeVersion);
+        docInf.setTypeVersion(typeVersion);
         docInf.setInstanceIdentifier(documentInstanceIdentifier);
         docInf.setType(documentType);
         LocalDate localDate = LocalDate.now();
@@ -88,27 +92,39 @@ public class StandardBusinessDocumentHeaderGenerator {
         docInf.setCreationDateAndTime(xdate);
         header.setDocumentIdentification(docInf);
 
+        ManifestItem mItem = new ManifestItem();
+        mItem.setDescription(manifestDescr);
+        mItem.setLanguageCode(manifestLanguage);
+        mItem.setMimeTypeQualifierCode(maniTypeQualCode);
+        mItem.setUniformResourceIdentifier(UniformResourceIdentifier);
+
+        Manifest manifest = new Manifest();
+        manifest.setNumberOfItems(BigInteger.ONE);
+        manifest.getManifestItem().add(mItem);
+        
+        header.setManifest(manifest);
+//        manifest.getManifestItem()
+
         /**
          * Creates and places business scope
          */
         BusinessScope bscope = new BusinessScope();
         header.setBusinessScope(bscope);
-        for (Iterator<Scope> it = scopes.iterator(); it.hasNext();) {
-            StandardBusinessDocumentHeader.BusinessScope.Scope businessScope = it.next();
+        for (Iterator<BusinessScope> it = scopes.iterator(); it.hasNext();) {
+            BusinessScope businessScope = it.next();
 //            Scope scope = new Scope();
 //            BusinessScope bscope = new BusinessScope();
 //            scope.setInstanceIdentifier(businessScope.getInstanceIdentifier());
 //            scope.setType(businessScope.getType());
 //            bscope.getScope().add(scope);
 //            header.setBusinessScope(bscope);
-            header.getBusinessScope().getScope().add(businessScope);
+            header.setBusinessScope(businessScope);
         }
 
         return header;
 
     }
-    
-    
+
 //    public StandardBusinessDocumentHeader generateDocumentHeaderfromClass(){
 //        
 //        
@@ -116,5 +132,4 @@ public class StandardBusinessDocumentHeaderGenerator {
 //        
 //        
 //    }
-
 }

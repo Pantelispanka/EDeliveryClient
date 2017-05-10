@@ -87,7 +87,6 @@ public class DocumentTypeMarshallerTest {
         c.setTime(new Date());
         XMLGregorianCalendar xmlDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
     }
-    
 
     @BeforeClass
     public static void setUpClass() throws DatatypeConfigurationException, IOException {
@@ -150,6 +149,16 @@ public class DocumentTypeMarshallerTest {
         att.getURI().add(uriText);
         attachment = new AttachmentGenerator().attachmentTypeGenerator(embeddedBinObj, nameTypeValue, pictureTypeValue, docType, statusCode, uriText);
         attachHelp = new AttachmentTypeHelper();
+        
+        
+        
+        DocumentType doc = new DocumentType();
+//        doc.set
+//        doc.se
+//        attachment.getReferenceDocument().;
+        
+        
+        
         attachHelp.setAttachment(att);
     }
 
@@ -159,16 +168,74 @@ public class DocumentTypeMarshallerTest {
 
     @Before
     public void setUp() {
+//        DocumentTypeMarshallerTest march = new DocumentTypeMarshallerTest();
+
+        embeddedBinObj = new BinaryObjectType();
+        embeddedBinObj.setCharacterSetCode("characterCodeSet");
+        embeddedBinObj.setEncodingCode("encoding Code");
+        embeddedBinObj.setFileName("test.txt");
+        embeddedBinObj.setFormat("txt");
+        embeddedBinObj.setMimeCode("mimeCode");
+        embeddedBinObj.setUri("uri");
+        embeddedBinObj.setValue(data);
+
+        nameTypeValue = new NameType();
+        nameTypeValue.setLanguageCode("languageCode");
+        nameTypeValue.setValue("language value");
+
+        forTestText = new TextType();
+        forTestText.setLanguageCode("gr");
+        forTestText.setValue("Κείμενο τεστ");
+
+        pictureTypeValue = new PictureType();
+        pictureTypeValue.setAreaIncluded(forTestText);
+        pictureTypeValue.setCopyrightOwnerName(forTestText);
+        pictureTypeValue.setDescription(forTestText);
+        pictureTypeValue.setDigitalImageBinaryObject(embeddedBinObj);
+        pictureTypeValue.setSubject(forTestText);
+        pictureTypeValue.setTitle(nameTypeValue);
+        pictureTypeValue.setType(forTestText);
+
+        statusCode = new CodeType();
+        statusCode.setLanguageCode("gr");
+        statusCode.setListAgencyID("id");
+        statusCode.setListAgencyName("AgencyName");
+        statusCode.setListID("Id");
+        statusCode.setListName("Name");
+        statusCode.setListSchemeURI("schemeURI");
+        statusCode.setListURI("list URI");
+        statusCode.setListVersionID("list version ID");
+        statusCode.setValue("The Actual Value!!!!");
+
+        personTypeTest = new PersonType();
+        personTypeTest.setGenderCode(statusCode);
+
+        docType = new DocumentType();
+        docType.setContent(uriText);
+
+        EgifCoreComponentsFactory fac = new EgifCoreComponentsFactory();
+        att = fac.createAttachmentType();
+
+        att.getEmbeddedBinaryObject().add(embeddedBinObj);
+
+        pictureTypeValue = new PictureType();
+        att.getEmbeddedBinaryObject().add(embeddedBinObj);
+        att.getName().add(nameTypeValue);
+        att.getEmbeddedPicture().add(pictureTypeValue);
+        att.getStatusCode().add(statusCode);
+        att.getURI().add(uriText);
+        attachment = new AttachmentGenerator().attachmentTypeGenerator(embeddedBinObj, nameTypeValue, pictureTypeValue, docType, statusCode, uriText);
+        attachHelp = new AttachmentTypeHelper();
+        attachHelp.setAttachment(att);
     }
 
     @After
     public void tearDown() {
     }
-    
-    public AttachmentTypeHelper returnAttach(){
+
+    public AttachmentTypeHelper returnAttach() {
         return attachHelp;
     }
-    
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
