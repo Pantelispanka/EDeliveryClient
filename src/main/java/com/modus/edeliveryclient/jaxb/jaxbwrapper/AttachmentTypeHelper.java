@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Pantelispanka
  */
-@XmlRootElement
+@XmlRootElement (name = "AttachmentElementHelper")
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class AttachmentTypeHelper {
     

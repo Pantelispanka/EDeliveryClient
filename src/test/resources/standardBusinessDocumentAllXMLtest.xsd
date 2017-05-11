@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StandardBusinessDocument xmlns:ns2="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns3="gr:gov:egif:data:standard:CoreComponents:Attachment" xmlns:ns4="gr:gov:egif:data:standard:CoreComponents:Picture" xmlns:ns5="gr:gov:egif:data:standard:CoreComponents:Document" xmlns:ns6="gr:gov:egif:data:standard:CoreComponents:Period" xmlns:ns7="gr:gov:egif:data:standard:CoreComponents:Party" xmlns:ns8="gr:gov:egif:data:standard:CoreComponents:Organization" xmlns:ns9="gr:gov:egif:data:standard:CoreComponents:Contact" xmlns:ns10="gr:gov:egif:data:standard:CoreComponents:Communication" xmlns:ns11="gr:gov:egif:data:standard:CoreComponents:Address" xmlns:ns12="gr:gov:egif:data:standard:CoreComponents:AddressLine" xmlns:ns13="gr:gov:egif:data:standard:CoreComponents:CountrySubdivision" xmlns:ns14="gr:gov:egif:data:standard:CoreComponents:Country" xmlns:ns15="gr:gov:egif:data:standard:CoreComponents:GeographicalCoordinate" xmlns:ns16="gr:gov:egif:data:standard:CoreComponents:Signature" xmlns:ns17="gr:gov:egif:data:standard:CoreComponents:Location" xmlns:ns18="gr:gov:egif:data:standard:CoreComponents:Status" xmlns:ns19="gr:gov:egif:data:standard:CoreComponents:Person" xmlns:ns20="gr:gov:egif:data:standard:CoreComponents:Feature" xmlns:ns21="gr:gov:egif:data:standard:CoreComponents:HierarchicalStructure" xmlns:ns22="gr:gov:egif:data:standard:CoreComponents:FinancialInstitution" xmlns:ns23="gr:gov:egif:data:standard:CoreComponents:Event" xmlns:ns24="gr:gov:egif:data:standard:CoreComponents:DeliveryTerms" xmlns:ns25="gr:gov:egif:data:standard:CoreComponents:PhysicalObject" xmlns:ns26="gr:gov:egif:data:standard:CoreComponents:UsageCondition" xmlns:ns27="gr:gov:egif:data:standard:CoreComponents:Payment" xmlns:ns28="gr:gov:egif:data:standard:CoreComponents:PaymentMeans" xmlns:ns29="gr:gov:egif:data:standard:CoreComponents:FinancialAccount" xmlns:ns30="gr:gov:egif:data:standard:CoreComponents:FinancialCard" xmlns:ns31="gr:gov:egif:data:standard:CoreComponents:PaymentTerms" xmlns:ns32="gr:gov:egif:data:standard:CoreComponents:MonetarySummation" xmlns:ns33="gr:gov:egif:data:standard:CoreComponents:Calculation" xmlns:ns34="gr:gov:egif:data:standard:CoreComponents:ServiceCharge" xmlns:ns35="gr:gov:egif:data:standard:CoreComponents:ExaminationResult" xmlns:ns36="gr:gov:egif:data:standard:CoreComponents:Line">
+    <StandardBusinessDocumentHeader>
+        <ns2:HeaderVersion>1.0</ns2:HeaderVersion>
+        <ns2:Sender>
+            <ns2:Identifier Authority="iso6523-actorid-upis">9933:test1</ns2:Identifier>
+        </ns2:Sender>
+        <ns2:Receiver>
+            <ns2:Identifier Authority="iso6523-actorid-upis">9933:test1</ns2:Identifier>
+        </ns2:Receiver>
+        <ns2:DocumentIdentification>
+            <ns2:Standard>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</ns2:Standard>
+            <ns2:TypeVersion>1</ns2:TypeVersion>
+            <ns2:InstanceIdentifier>627a2e9a-a146-461f-b62f-f22f5799fd55</ns2:InstanceIdentifier>
+            <ns2:Type>Invoice</ns2:Type>
+            <ns2:CreationDateAndTime>2017-05-10T00:00:00.000+03:00</ns2:CreationDateAndTime>
+        </ns2:DocumentIdentification>
+        <ns2:Manifest>
+            <ns2:NumberOfItems>1</ns2:NumberOfItems>
+            <ns2:ManifestItem>
+                <ns2:MimeTypeQualifierCode>maniTypeQualCode</ns2:MimeTypeQualifierCode>
+                <ns2:UniformResourceIdentifier>uniformResourceIdentifier</ns2:UniformResourceIdentifier>
+                <ns2:Description>manifestDescr</ns2:Description>
+                <ns2:LanguageCode> manifestLanguage</ns2:LanguageCode>
+            </ns2:ManifestItem>
+        </ns2:Manifest>
+        <ns2:BusinessScope/>
+    </StandardBusinessDocumentHeader>
+    <AttachmentElementHelper>
+        <Attachment>
+            <ns3:Name languageCode="languageCode">language value</ns3:Name>
+            <ns3:EmbeddedBinaryObject format="txt" mimeCode="mimeCode" encodingCode="encoding Code" characterSetCode="characterCodeSet" uri="uri" fileName="test.txt">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</ns3:EmbeddedBinaryObject>
+            <ns3:EmbeddedBinaryObject format="txt" mimeCode="mimeCode" encodingCode="encoding Code" characterSetCode="characterCodeSet" uri="uri" fileName="test.txt">QSB0ZXN0IGRvY3VtZW50IHRvIGJlIHNlbmQgYW5kIHJlY2VpdmVkIGZyb20gYW4KIFNCQiAtIENJUEEgQmFja2VuZCBDb25uZWN0b3Igd2l0aCBBUCBhbmQgU01QCg==</ns3:EmbeddedBinaryObject>
+            <ns3:StatusCode listID="Id" listAgencyID="id" listAgencyName="AgencyName" listName="Name" listVersionID="list version ID" languageCode="gr" listURI="list URI" listSchemeURI="schemeURI">The Actual Value!!!!</ns3:StatusCode>
+            <ns3:EmbeddedPicture/>
+        </Attachment>
+    </AttachmentElementHelper>
+</StandardBusinessDocument>
