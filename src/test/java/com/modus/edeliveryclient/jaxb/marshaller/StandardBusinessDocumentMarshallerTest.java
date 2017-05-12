@@ -15,9 +15,10 @@ import com.modus.edeliveryclient.jaxb.egif_core_component.PictureType;
 import com.modus.edeliveryclient.jaxb.egif_core_component.TextType;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.SBDHFactory;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocument;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocumentHeader;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
@@ -41,7 +42,9 @@ public class StandardBusinessDocumentMarshallerTest {
 //    private static MyPrefixMapper prefixMapper; 
     private static StandardBusinessDocumentHeader sbdh;
     private static AttachmentTypeHelper att;
-
+    
+    private static PapyrosDocument papDoc;
+    
     private static StandardBusinessDocument sbd;
 
     public StandardBusinessDocumentMarshallerTest() {
@@ -54,6 +57,7 @@ public class StandardBusinessDocumentMarshallerTest {
         new DocumentTypeMarshallerTest().setUp();
         att = new DocumentTypeMarshallerTest().returnAttach();
         sbd = new StandardBusinessDocument();
+        papDoc = new PapyrosDocument();
     }
 
     @AfterClass
@@ -82,7 +86,9 @@ public class StandardBusinessDocumentMarshallerTest {
             JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             sbd.setStandardBusinessDocumentHeader(sbdh);
-            sbd.setAny(att);
+            papDoc.setFormat(".txt");
+            papDoc.setActualDoc("Aqsdqwedikbn`1@!~#4!!@qwdsf!@#^6b1%^$%&*BDBFG@#$78DFBHQENT^*()$ADSFC");
+            sbd.setAny(papDoc);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
 //            try{

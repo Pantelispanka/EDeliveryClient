@@ -6,7 +6,7 @@
 //
 
 
-package com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader;
+package com.modus.edeliveryclient.jaxb.standardbusinessdocument;
 
 import java.util.ArrayList;
 import java.util.List;

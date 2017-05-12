@@ -6,8 +6,9 @@
 //
 
 
-package com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader;
+package com.modus.edeliveryclient.jaxb.standardbusinessdocument;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,17 +18,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Partner complex type.
+ * <p>Java class for Manifest complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Partner">
+ * &lt;complexType name="Manifest">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Identifier" type="{http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader}PartnerIdentification"/>
- *         &lt;element name="ContactInformation" type="{http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader}ContactInformation" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="NumberOfItems" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         &lt;element name="ManifestItem" type="{http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader}ManifestItem" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,68 +38,68 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Partner", propOrder = {
-    "identifier",
-    "contactInformation"
+@XmlType(name = "Manifest", propOrder = {
+    "numberOfItems",
+    "manifestItem"
 })
-public class Partner {
+public class Manifest {
 
-    @XmlElement(name = "Identifier", required = true)
-    protected PartnerIdentification identifier;
-    @XmlElement(name = "ContactInformation")
-    protected List<ContactInformation> contactInformation;
+    @XmlElement(name = "NumberOfItems", required = true)
+    protected BigInteger numberOfItems;
+    @XmlElement(name = "ManifestItem", required = true)
+    protected List<ManifestItem> manifestItem;
 
     /**
-     * Gets the value of the identifier property.
+     * Gets the value of the numberOfItems property.
      * 
      * @return
      *     possible object is
-     *     {@link PartnerIdentification }
+     *     {@link BigInteger }
      *     
      */
-    public PartnerIdentification getIdentifier() {
-        return identifier;
+    public BigInteger getNumberOfItems() {
+        return numberOfItems;
     }
 
     /**
-     * Sets the value of the identifier property.
+     * Sets the value of the numberOfItems property.
      * 
      * @param value
      *     allowed object is
-     *     {@link PartnerIdentification }
+     *     {@link BigInteger }
      *     
      */
-    public void setIdentifier(PartnerIdentification value) {
-        this.identifier = value;
+    public void setNumberOfItems(BigInteger value) {
+        this.numberOfItems = value;
     }
 
     /**
-     * Gets the value of the contactInformation property.
+     * Gets the value of the manifestItem property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the contactInformation property.
+     * This is why there is not a <CODE>set</CODE> method for the manifestItem property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getContactInformation().add(newItem);
+     *    getManifestItem().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ContactInformation }
+     * {@link ManifestItem }
      * 
      * 
      */
-    public List<ContactInformation> getContactInformation() {
-        if (contactInformation == null) {
-            contactInformation = new ArrayList<ContactInformation>();
+    public List<ManifestItem> getManifestItem() {
+        if (manifestItem == null) {
+            manifestItem = new ArrayList<ManifestItem>();
         }
-        return this.contactInformation;
+        return this.manifestItem;
     }
 
 }

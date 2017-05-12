@@ -5,9 +5,12 @@
  */
 package com.modus.edeliveryclient;
 
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import com.modus.edeliveryclient.models.Authorization;
 import com.modus.edeliveryclient.models.ResponseMessage;
 import java.util.concurrent.CompletableFuture;
+import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -20,4 +23,8 @@ public interface EDeliveryClient {
     
     public CompletableFuture<ResponseMessage> deleteParticipantId(String participantIdentifierScheme, String participantIdentifierValue, Authorization auth);
 
+    public CompletableFuture<ResponseMessage> createOutgoingDefaultImpl(StandardBusinessDocumentHeader sbdh, PapyrosDocument papDoc, Authorization auth) throws JAXBException;
+
+    public CompletableFuture<Object> getMessageDefault(String messageId, Authorization auth) throws JAXBException;
+    
 }

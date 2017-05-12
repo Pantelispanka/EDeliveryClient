@@ -6,7 +6,7 @@
 //
 
 
-package com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader;
+package com.modus.edeliveryclient.jaxb.standardbusinessdocument;
 
 import com.modus.edeliveryclient.jaxb.egif_core_component.AttachmentType;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
@@ -46,7 +46,7 @@ import org.w3c.dom.Element;
     "any"
 })
 @XmlRootElement( name = "StandardBusinessDocument")
-@XmlSeeAlso({AttachmentTypeHelper.class})
+@XmlSeeAlso({PapyrosDocument.class})
 public class StandardBusinessDocument {
 
     @XmlElement(name = "StandardBusinessDocumentHeader")

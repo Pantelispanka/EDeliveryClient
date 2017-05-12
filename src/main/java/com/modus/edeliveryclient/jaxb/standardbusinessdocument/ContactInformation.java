@@ -6,7 +6,7 @@
 //
 
 
-package com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader;
+package com.modus.edeliveryclient.jaxb.standardbusinessdocument;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

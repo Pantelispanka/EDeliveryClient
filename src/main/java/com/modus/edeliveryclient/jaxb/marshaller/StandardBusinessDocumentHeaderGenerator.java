@@ -5,16 +5,16 @@
  */
 package com.modus.edeliveryclient.jaxb.marshaller;
 
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.SBDHFactory;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.BusinessScope;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.DocumentIdentification;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.Manifest;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.ManifestItem;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.Partner;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.PartnerIdentification;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.Scope;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocumentHeader;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.BusinessScope;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.DocumentIdentification;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Manifest;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.ManifestItem;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Partner;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PartnerIdentification;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Scope;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.ZoneId;

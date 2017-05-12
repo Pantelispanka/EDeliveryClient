@@ -6,11 +6,11 @@
 package com.modus.edeliveryclient.jaxb.marshaller;
 
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.BusinessScope;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.SBDHFactory;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.Scope;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocument;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocumentHeader;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.BusinessScope;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.Scope;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;

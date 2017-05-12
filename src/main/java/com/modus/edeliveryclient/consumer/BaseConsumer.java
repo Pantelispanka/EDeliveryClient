@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.SequenceInputStream;
 import java.util.StringJoiner;
 import java.util.concurrent.CompletableFuture;
+import javax.xml.bind.Marshaller;
 import org.asynchttpclient.AsyncHandler;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.BoundRequestBuilder;
@@ -32,12 +33,21 @@ public abstract class BaseConsumer implements Closeable{
     protected final AsyncHttpClient httpClient;
     protected final Serializer serializer;
     protected String basepath;
+//    protected final Marshaller marshaller;
     
     public BaseConsumer(AsyncHttpClient httpClient, Serializer serializer, String basepath){
         this.httpClient = httpClient;
         this.serializer = serializer;
         this.basepath = basepath;
+//        this.marshaller = marshaller;
     }
+    
+    
+//      public BaseConsumer(AsyncHttpClient httpClient, Marshaller marshaller, String basepath){
+//        this.basepath = basepath;
+//        this.marshaller = marshaller;
+//        this.basepath = basepath;
+//    }
     
     
     

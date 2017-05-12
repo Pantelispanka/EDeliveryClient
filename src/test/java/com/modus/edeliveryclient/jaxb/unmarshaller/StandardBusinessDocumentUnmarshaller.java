@@ -5,11 +5,13 @@
  */
 package com.modus.edeliveryclient.jaxb.unmarshaller;
 
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.SBDHFactory;
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.PapyrosDocument;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.SBDHFactory;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocument;
 import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.JAXBIntrospector;
 import javax.xml.bind.Unmarshaller;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -57,9 +59,12 @@ public class StandardBusinessDocumentUnmarshaller {
             JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Object sbd =  jaxbUnmarshaller.unmarshal(file);
-            System.out.println(sbd);
-//            System.out.println(sbd.getStandardBusinessDocumentHeader().toString());
+            StandardBusinessDocument sbd = (StandardBusinessDocument) JAXBIntrospector.getValue(jaxbUnmarshaller.unmarshal(file));
+//            StandardBusinessDocument sbd = (StandardBusinessDocument) jaxbUnmarshaller.unmarshal(file);
+//            Object sbd =  jaxbUnmarshaller.unmarshal(file);
+            System.out.println(sbd.getStandardBusinessDocumentHeader().getManifest().getManifestItem().get(0).getDescription());
+            PapyrosDocument paDoc = (PapyrosDocument) sbd.getAny();
+            System.out.println(paDoc.getActualDoc());
 
         } catch (JAXBException e) {
             e.printStackTrace();

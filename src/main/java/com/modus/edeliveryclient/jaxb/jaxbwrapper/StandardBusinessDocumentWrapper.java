@@ -7,7 +7,7 @@ package com.modus.edeliveryclient.jaxb.jaxbwrapper;
 
 
 
-import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocumentHeader;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocument.StandardBusinessDocumentHeader;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;

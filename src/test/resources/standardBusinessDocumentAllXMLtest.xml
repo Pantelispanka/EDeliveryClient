@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <StandardBusinessDocument xmlns="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader">
     <StandardBusinessDocumentHeader>
         <HeaderVersion>1.0</HeaderVersion>
@@ -37,4 +36,7 @@
             </Scope>
         </BusinessScope>
     </StandardBusinessDocumentHeader>
+    <papyrosDocument format=".txt">
+        <actualDoc>Aqsdqwedikbn`1@!~#4!!@qwdsf!@#^6b1%^$%&amp;*BDBFG@#$78DFBHQENT^*()$ADSFC</actualDoc>
+    </papyrosDocument>
 </StandardBusinessDocument>
