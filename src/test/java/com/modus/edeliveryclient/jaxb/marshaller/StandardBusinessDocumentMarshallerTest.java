@@ -16,6 +16,7 @@ import com.modus.edeliveryclient.jaxb.egif_core_component.TextType;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
 import com.modus.edeliveryclient.jaxb.jaxbwrapper.StandardBusinessDocumentWrapper;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.SBDHFactory;
+import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocument;
 import com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader.StandardBusinessDocumentHeader;
 import java.io.File;
 import java.io.IOException;
@@ -35,38 +36,34 @@ import static org.junit.Assert.*;
  *
  * @author Pantelispanka
  */
-
 public class StandardBusinessDocumentMarshallerTest {
-    
-    
-    
+
+//    private static MyPrefixMapper prefixMapper; 
     private static StandardBusinessDocumentHeader sbdh;
     private static AttachmentTypeHelper att;
-    
-    private StandardBusinessDocumentWrapper sbd;
-    
-    
-    
-    
+
+    private static StandardBusinessDocument sbd;
+
     public StandardBusinessDocumentMarshallerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() throws DatatypeConfigurationException, IOException {
-        new StandardBusinessDocumentHeaderMarshallerGeneratorTest().setUp(); 
+        new StandardBusinessDocumentHeaderMarshallerGeneratorTest().setUp();
         sbdh = new StandardBusinessDocumentHeaderMarshallerGeneratorTest().returnDocHead();
         new DocumentTypeMarshallerTest().setUp();
         att = new DocumentTypeMarshallerTest().returnAttach();
+        sbd = new StandardBusinessDocument();
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -76,25 +73,32 @@ public class StandardBusinessDocumentMarshallerTest {
     //
     // @Test
     // public void hello() {}
-    
     @Test
-    public void generateHeaderXml(){
+    public void generateHeaderXml() throws JAXBException {
         File file = new File("/Users/modussa/Java/EDeliveryClient/src/test/resources/standardBusinessDocumentAllXMLtest.xsd");
-        
-        try{
-            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocumentWrapper.class, SBDHFactory.class);
+
+        try {
+//            prefixMapper = new MyPrefixMapper();
+            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            sbd = new StandardBusinessDocumentWrapper();
-//            sbd.setStandardBusinessDocumentHeader(att);
             sbd.setStandardBusinessDocumentHeader(sbdh);
             sbd.setAny(att);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
+//            try{
+//                jaxbMarshaller.setProperty("com.sun.xml.bind.marshaller.namespacePrefixMapper", prefixMapper);
+//            }catch(Exception e){
+//                e.printStackTrace();
+//            }
+
             jaxbMarshaller.marshal(sbd, file);
+
             jaxbMarshaller.marshal(sbd, System.out);
-            
-        }catch(JAXBException e){
+
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
-        
+
     }
+
 }

@@ -139,11 +139,6 @@ public class SBDHFactory {
     public Scope createScope() {
         return new Scope();
     }
-    
-    
-    
-    
-    
 
     /**
      * Create an instance of {@link Partner }
