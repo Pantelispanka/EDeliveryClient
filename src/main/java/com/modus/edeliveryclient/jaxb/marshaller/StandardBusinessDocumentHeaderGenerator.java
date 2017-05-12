@@ -41,7 +41,7 @@ public class StandardBusinessDocumentHeaderGenerator {
             String participantIdentifierReceiverScheme, String participantIdentifierReceiverValue,
             String documentIdStandard, int docTypeVersion,
             String documentInstanceIdentifier, String documentType,
-             List<BusinessScope> scopes, String manifestDescr, String manifestLanguage, String maniTypeQualCode,
+             List<Scope> scopes, String manifestDescr, String manifestLanguage, String maniTypeQualCode,
              String UniformResourceIdentifier) throws DatatypeConfigurationException {
 
         StandardBusinessDocumentHeader header = headerFactory.createStandardBusinessDocumentHeader();
@@ -110,15 +110,16 @@ public class StandardBusinessDocumentHeaderGenerator {
          */
         BusinessScope bscope = new BusinessScope();
         header.setBusinessScope(bscope);
-        for (Iterator<BusinessScope> it = scopes.iterator(); it.hasNext();) {
-            BusinessScope businessScope = it.next();
+        
+        for (Iterator<Scope> it = scopes.iterator(); it.hasNext();) {
+            Scope businessScope = it.next();
 //            Scope scope = new Scope();
 //            BusinessScope bscope = new BusinessScope();
 //            scope.setInstanceIdentifier(businessScope.getInstanceIdentifier());
 //            scope.setType(businessScope.getType());
 //            bscope.getScope().add(scope);
 //            header.setBusinessScope(bscope);
-            header.setBusinessScope(businessScope);
+            header.getBusinessScope().getScope().add(businessScope);
         }
 
         return header;

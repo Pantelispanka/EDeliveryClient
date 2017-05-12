@@ -90,16 +90,6 @@ public class PeriodType {
     @XmlElement(name = "SequenceNumeric")
     protected BigDecimal sequenceNumeric;
 
-    
-    public PeriodType(){
-    
-    }
-    
-//    public PeriodType(){
-//        this.
-//    }
-    
-    
     /**
      * Gets the value of the durationMeasure property.
      * 

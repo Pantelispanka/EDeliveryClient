@@ -66,10 +66,6 @@ public class BusinessScope {
      * 
      * 
      */
-    
-    
-    
-    
     public List<Scope> getScope() {
         if (scope == null) {
             scope = new ArrayList<Scope>();

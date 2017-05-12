@@ -8,10 +8,14 @@
 
 package com.modus.edeliveryclient.jaxb.standardbusinessdocumentheader;
 
+import com.modus.edeliveryclient.jaxb.egif_core_component.AttachmentType;
+import com.modus.edeliveryclient.jaxb.jaxbwrapper.AttachmentTypeHelper;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import org.w3c.dom.Element;
 
@@ -41,7 +45,8 @@ import org.w3c.dom.Element;
     "standardBusinessDocumentHeader",
     "any"
 })
-
+@XmlRootElement( name = "StandardBusinessDocument")
+@XmlSeeAlso({AttachmentTypeHelper.class})
 public class StandardBusinessDocument {
 
     @XmlElement(name = "StandardBusinessDocumentHeader")

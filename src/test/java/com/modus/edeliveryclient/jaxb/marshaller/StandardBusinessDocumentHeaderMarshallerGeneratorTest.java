@@ -59,7 +59,7 @@ public class StandardBusinessDocumentHeaderMarshallerGeneratorTest {
     private final static String maniTypeQualCode = "maniTypeQualCode";
     private final static String uniformResourceIdentifier = "uniformResourceIdentifier";
 
-    private final static List<BusinessScope> scopes = new ArrayList<BusinessScope>() {
+    private final static List<Scope> businessScopes = new ArrayList<Scope>() {
         {
 //            add(new Scope());
 //            add(new Scope());
@@ -72,21 +72,29 @@ public class StandardBusinessDocumentHeaderMarshallerGeneratorTest {
 
     @BeforeClass
     public static void setUpClass() throws DatatypeConfigurationException {
-        Scope scope = new Scope();
-        scope.setIdentifier(scopeIdentifier);
-        scope.setInstanceIdentifier("Instance");
-        scope.setType("ScopeType");
+        Scope scope1 = new Scope();
+        scope1.setIdentifier(scopeIdentifier);
+        scope1.setInstanceIdentifier("Instance");
+        scope1.setType(scopeType);
 //        scope
-        BusinessScope bScope = new BusinessScope();
-        bScope.getScope().add(scope);
-        scopes.add(bScope);
+        BusinessScope bScope1 = new BusinessScope();
+        bScope1.getScope().add(scope1);
+        Scope scope2 = new Scope();
+        scope2.setIdentifier(scopeIdentifier);
+        scope2.setInstanceIdentifier("Instance");
+        scope2.setType(scopeType2);
+//        scope
+        BusinessScope bScope2 = new BusinessScope();
+        bScope2.getScope().add(scope2);
+        businessScopes.add(scope2);
+        businessScopes.add(scope1);
         businDocHeader = new StandardBusinessDocumentHeaderGenerator()
                 .generateDocumentHeaderfromValues(headerVersion, participantIdentifierSenderScheme, participantIdentifierSenderValue,
                         participantIdentifierReceiverScheme, participantIdentifierReceiverValue,
-                        documentIdStandard, docTypeVersion, documentInstanceIdentifier, documentType, scopes,
+                        documentIdStandard, docTypeVersion, documentInstanceIdentifier, documentType, businessScopes,
                         manifestDescr, manifestLanguage, maniTypeQualCode, uniformResourceIdentifier);
-
-//        sbd.setStandardBusinessDocumentHeader(businDocHeader);
+        sbd = new SBDHFactory().createStandardBusinessDocument();
+        sbd.setStandardBusinessDocumentHeader(businDocHeader);
 
     }
 
@@ -96,12 +104,25 @@ public class StandardBusinessDocumentHeaderMarshallerGeneratorTest {
 
     @Before
     public void setUp() throws DatatypeConfigurationException {
+        Scope scope1 = new Scope();
+        scope1.setIdentifier(scopeIdentifier);
+        scope1.setInstanceIdentifier("Instance");
+        scope1.setType(scopeType);
+        BusinessScope bScope1 = new BusinessScope();
+        bScope1.getScope().add(scope1);
+        Scope scope2 = new Scope();
+        scope2.setIdentifier(scopeIdentifier);
+        scope2.setInstanceIdentifier("Instance");
+        scope2.setType(scopeType2);
+        BusinessScope bScope2 = new BusinessScope();
+        bScope2.getScope().add(scope2);
+        businessScopes.add(scope2);
+        businessScopes.add(scope1);
         businDocHeader = new StandardBusinessDocumentHeaderGenerator()
                 .generateDocumentHeaderfromValues(headerVersion, participantIdentifierSenderScheme, participantIdentifierSenderValue,
                         participantIdentifierReceiverScheme, participantIdentifierReceiverValue,
-                        documentIdStandard, docTypeVersion, documentInstanceIdentifier, documentType, scopes,
-                        manifestDescr, manifestLanguage, maniTypeQualCode, uniformResourceIdentifier
-                );
+                        documentIdStandard, docTypeVersion, documentInstanceIdentifier, documentType, businessScopes,
+                        manifestDescr, manifestLanguage, maniTypeQualCode, uniformResourceIdentifier);
     }
 
     @After
@@ -121,11 +142,11 @@ public class StandardBusinessDocumentHeaderMarshallerGeneratorTest {
         File file = new File("/Users/modussa/Java/EDeliveryClient/src/test/resources/standardBusinessDocumentXMLtest.xsd");
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocumentWrapper.class, SBDHFactory.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(StandardBusinessDocument.class, SBDHFactory.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            sbd.setStandardBusinessDocumentHeader(businDocHeader);
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.marshal(sbd, file);
+            
             jaxbMarshaller.marshal(sbd, System.out);
 
         } catch (JAXBException e) {

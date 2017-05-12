@@ -56,15 +56,6 @@ public class Scope {
     @XmlElementRef(name = "ScopeInformation", namespace = "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader", type = JAXBElement.class, required = false)
     protected List<JAXBElement<?>> scopeInformation;
 
-    
-//    public Scope(String Type, String InstanceIdentifier, String Identifier){
-//        this.identifier=Identifier;
-//        this.type = Type;
-//        this.instanceIdentifier= InstanceIdentifier;
-//    }
-    
-    
-    
     /**
      * Gets the value of the type property.
      * 
